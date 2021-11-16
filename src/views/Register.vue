@@ -113,7 +113,27 @@
                 >
               </md-field>
             </div>
+            <div class="md-layout-item md-small-size-100">
+              <md-field :class="getValidationClass('city')">
+                <label for="city">City</label>
+                <md-input
+                  type="text"
+                  name="city"
+                  id="city"
+                  autocomplete="city"
+                  v-model="form.city"
+                  :disabled="sending"
+                />
+                <span class="md-error" v-if="!$v.form.city.required"
+                  >The city is required</span
+                >
+                <span class="md-error" v-else-if="!$v.form.city"
+                  >Invalid city</span
+                >
+              </md-field>
+            </div>
           </div>
+
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('adress')">
@@ -239,6 +259,7 @@ export default {
       gender: null,
       age: null,
       email: null,
+      city: null,
       adress: null,
       zipcode: null,
       password: null,
@@ -260,6 +281,9 @@ export default {
       age: {
         required,
         maxLength: maxLength(3),
+      },
+      city: {
+        required,
       },
       adress: {
         required,
@@ -299,6 +323,7 @@ export default {
       this.form.age = null;
       this.form.zipcode = null;
       this.form.adress = null;
+      this.form.city = null;
       this.form.gender = null;
       this.form.email = null;
       this.form.phonenumber = null;
