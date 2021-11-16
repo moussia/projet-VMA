@@ -1,6 +1,10 @@
 <template>
   <div>
-    <form novalidate class="toto md-layout" @submit.prevent="validateUser">
+    <form
+      novalidate
+      class="toto md-layout-item md-size-50"
+      @submit.prevent="validateUser"
+    >
       <md-card class="">
         <md-card-header>
           <div class="md-title">Register</div>
