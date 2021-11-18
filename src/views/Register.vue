@@ -11,6 +11,17 @@
         </md-card-header>
 
         <md-card-content>
+          <div>
+            <md-radio v-model="radio" value="parent" class="md-primary"
+              >Parent</md-radio
+            >
+            <md-radio v-model="radio" value="professional" class="md-primary"
+              >Professional</md-radio
+            >
+          </div>
+        </md-card-content>
+
+        <md-card-content>
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('firstName')">
@@ -176,6 +187,12 @@
                 >
               </md-field>
             </div>
+            <div class="md-layout-item md-small-size-100">
+              <md-field>
+                <label>Only images</label>
+                <md-file v-model="single" accept="image/*" />
+              </md-field>
+            </div>
           </div>
 
           <div class="md-layout md-gutter">
@@ -251,6 +268,7 @@ import {
 export default {
   name: 'Register',
   mixins: [validationMixin],
+
   data: () => ({
     form: {
       firstName: null,
@@ -267,6 +285,7 @@ export default {
     userSaved: false,
     sending: false,
     lastUser: null,
+    radio: 'accent',
   }),
   validations: {
     form: {
@@ -354,5 +373,9 @@ export default {
 <style lang="scss" scoped>
 .toto {
   display: inline-block;
+}
+
+.md-radio {
+  display: flex;
 }
 </style>
