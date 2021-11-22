@@ -5,7 +5,7 @@
       class="toto md-layout-item md-size-50"
       @submit.prevent="validateUser"
     >
-      <md-card class="">
+      <md-card class="registerstyle">
         <md-card-header>
           <div class="md-title">Register</div>
         </md-card-header>
@@ -373,9 +373,14 @@ export default {
 <style lang="scss" scoped>
 .toto {
   display: inline-block;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .md-radio {
   display: flex;
+}
+
+.registerstyle {
 }
 </style>

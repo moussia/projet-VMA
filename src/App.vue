@@ -1,15 +1,34 @@
 <template>
-  <div id="app">
+  <!-- <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/login">Login</router-link> |
       <router-link to="/my-account">My Account</router-link> |
-      <router-link to="/register">Register</router-link>
+      <router-link to="/register">Register</router-link> |
+      <router-link to="/menu">menu</router-link>
     </div>
     <router-view />
+  </div> -->
+  <div id="app">
+    <div id="nav">
+      <Menu />
+      <Footer />
+    </div>
   </div>
 </template>
+
+<script>
+import Menu from '@/components/Menu.vue';
+import Footer from '@/components/Footer.vue';
+
+export default {
+  components: {
+    Menu,
+    Footer,
+  },
+};
+</script>
 
 <style>
 #app {
@@ -19,7 +38,7 @@
   text-align: center;
   color: #2c3e50;
 }
-
+/* 
 #nav {
   padding: 30px;
 }
@@ -31,5 +50,5 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
-}
+} */
 </style>
