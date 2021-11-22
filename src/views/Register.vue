@@ -5,7 +5,7 @@
       class="toto md-layout-item md-size-50"
       @submit.prevent="validateUser"
     >
-      <md-card class="registerstyle">
+      <md-card>
         <md-card-header>
           <div class="md-title">Register</div>
         </md-card-header>
@@ -379,8 +379,5 @@ export default {
 
 .md-radio {
   display: flex;
-}
-
-.registerstyle {
 }
 </style>
