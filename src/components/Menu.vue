@@ -3,7 +3,7 @@
     <md-toolbar class="md-transparent">
       <md-menu md-size="medium" md-align-trigger>
         <md-button md-menu-trigger>
-          <router-link to="/">Home</router-link></md-button
+          <router-link to="/">URGENCE PARENTAL</router-link></md-button
         >
         <md-button md-menu-trigger>
           <router-link to="/about">About</router-link>

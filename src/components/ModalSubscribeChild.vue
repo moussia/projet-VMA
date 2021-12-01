@@ -2,36 +2,35 @@
   <div>
     <md-dialog :md-active.sync="showDialog">
       <md-dialog-title>Preferences</md-dialog-title>
-      <form novalidate class="toto md-layout-item md-size-100">
-        <h2>you can change your information here</h2>
+      <form novalidate class="toto">
+        <md-content>
+          <h2>Enter your child's information</h2>
 
-        <h2>you can modify here, the information concerning your child.</h2>
-        <div>
-          <p>
-            Age of your child
-            <md-input
-              name="age-child"
-              id="age-child"
-              autocomplete="given-name"
-              :disabled="sending"
-            />
-          </p>
-          <p>
-            My Last name:
-            <md-input
-              name="last-name"
-              id="last-name"
-              autocomplete="given-name"
-              :disabled="sending"
-            />
-          </p>
-          <md-button
-            type="submit"
-            class="md-raised md-primary"
-            :disabled="sending"
-            >Modify</md-button
-          >
-        </div>
+          <h2>
+            You must enter your child's information in order to book
+            professional emergencies.
+          </h2>
+          <div>
+            <p>
+              Age of your child
+              <md-input
+                name="age-child"
+                id="age-child"
+                autocomplete="given-name"
+                :disabled="sending"
+              />
+            </p>
+            <p>
+              Last Name of your child:
+              <md-input
+                name="last-name"
+                id="last-name"
+                autocomplete="given-name"
+                :disabled="sending"
+              />
+            </p>
+          </div>
+        </md-content>
       </form>
 
       <md-tabs md-dynamic-height> </md-tabs>
