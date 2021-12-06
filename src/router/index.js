@@ -15,29 +15,34 @@ const routes = [
     component: Home
   },
   {
-    path: '/register',
+    path: '/inscription',
     name: 'Register',
     component: Register
   },
   {
-    path: '/login',
+    path: '/connexion',
     name: 'Login',
     component: Login
   },
   {
-    path: '/my-account',
+    path: '/moncompte',
     name: 'MyAccount',
     component: MyAccount
   },
   {
-    path: '/forgetpassword',
+    path: '/motdepasseoublie',
     name: 'ForgetPassword',
     component: ForgetPassword
   },
   {
-    path: '/about',
+    path: '/a-propos',
     name: 'About',
     component: () => import('../views/About.vue')
+  },
+  {
+    path: '/erreur',
+    name: 'error404',
+    component: () => import('../views/Page404.vue')
   }
 ]
 

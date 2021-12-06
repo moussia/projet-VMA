@@ -7,7 +7,7 @@
     >
       <md-card>
         <md-card-header>
-          <div class="md-title">Forget Password</div>
+          <div class="md-title">Mot de passe oublié</div>
         </md-card-header>
 
         <md-card-content>
@@ -22,10 +22,10 @@
               :disabled="sending"
             />
             <span class="md-error" v-if="!$v.form.email.required"
-              >The email is required</span
+              >L'email est obligatoire</span
             >
             <span class="md-error" v-else-if="!$v.form.email.email"
-              >Invalid email</span
+              >Email invalide</span
             >
           </md-field>
         </md-card-content>
@@ -35,10 +35,10 @@
             type="submit"
             class="md-raised md-primary"
             :disabled="sending"
-            >Forget Password</md-button
+            >Envoyer</md-button
           >
         </md-card-actions>
-        <router-link to="/login">Login</router-link>
+        <router-link to="/connexion">Connexion</router-link>
       </md-card>
     </form>
   </div>

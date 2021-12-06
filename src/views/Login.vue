@@ -7,7 +7,7 @@
     >
       <md-card>
         <md-card-header>
-          <div class="md-title">Login</div>
+          <div class="md-title">Connexion</div>
         </md-card-header>
 
         <md-card-content>
@@ -22,17 +22,17 @@
               :disabled="sending"
             />
             <span class="md-error" v-if="!$v.form.email.required"
-              >The email is required</span
+              >L'email est obligatoire</span
             >
             <span class="md-error" v-else-if="!$v.form.email.email"
-              >Invalid email</span
+              >Email invalide</span
             >
           </md-field>
         </md-card-content>
 
         <md-card-content>
           <md-field :class="getValidationClass('password')">
-            <label for="password">Password</label>
+            <label for="password">Mot de passe</label>
             <md-input
               type="password"
               name="password"
@@ -40,7 +40,7 @@
               v-model="form.password"
             />
             <span class="md-error" v-if="!$v.form.password.required"
-              >The password is required</span
+              >Le mot de passe est obligatoire</span
             >
           </md-field>
         </md-card-content>
@@ -50,12 +50,13 @@
             type="submit"
             class="md-raised md-primary"
             :disabled="sending"
-            >Login</md-button
+            >Connexion</md-button
           >
         </md-card-actions>
 
-        <router-link to="/forgetPassword">Forget Password</router-link> |
-        <router-link to="/register">Register</router-link>
+        <router-link to="/motdepasseoublie">Mot de passe oublié ?</router-link>
+        |
+        <router-link to="/inscription">Inscription</router-link>
       </md-card>
     </form>
   </div>

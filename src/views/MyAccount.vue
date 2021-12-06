@@ -3,10 +3,10 @@
     <form novalidate class="toto md-layout-item md-size-50">
       <md-tabs md-dynamic-height>
         <md-tab md-label="General">
-          <h2>you can change your information here</h2>
+          <h2>Vous pouvez changer vos informations ici</h2>
           <div>
             <p>
-              My First name:
+              Prénom :
               <md-input
                 name="first-name"
                 id="first-name"
@@ -15,7 +15,7 @@
               />
             </p>
             <p>
-              My Last name:
+              Nom :
               <md-input
                 name="last-name"
                 id="last-name"
@@ -24,7 +24,7 @@
               />
             </p>
             <p>
-              My Age:
+              Age :
               <md-input
                 name="age"
                 id="age"
@@ -33,7 +33,7 @@
               />
             </p>
             <p>
-              My Phone number:
+              Téléphone :
               <md-input
                 name="phonenumber"
                 id="phonenumber"
@@ -42,7 +42,7 @@
               />
             </p>
             <p>
-              My Address:
+              Adresse :
               <md-input
                 name="address"
                 id="address"
@@ -51,7 +51,7 @@
               />
             </p>
             <p>
-              My City:
+              Ville :
               <md-input
                 name="city"
                 id="city"
@@ -60,7 +60,7 @@
               />
             </p>
             <p>
-              My zipcode:
+              Code postal :
               <md-input
                 name="zipcode"
                 id="zipcode"
@@ -73,15 +73,15 @@
             type="submit"
             class="md-raised md-primary"
             :disabled="sending"
-            >Modify</md-button
+            >Modifier</md-button
           >
         </md-tab>
 
-        <md-tab md-label="Child">
-          <h2>you can modify here, the information concerning your child.</h2>
+        <md-tab md-label="Enfant">
+          <h2>Vous pouvez modifier ici les informations sur votre enfant</h2>
           <div>
             <p>
-              Age of your child
+              Age de votre enfant
               <md-input
                 name="age-child"
                 id="age-child"
@@ -90,7 +90,7 @@
               />
             </p>
             <p>
-              My Last name:
+              Son prénom:
               <md-input
                 name="last-name"
                 id="last-name"
@@ -102,11 +102,11 @@
               type="submit"
               class="md-raised md-primary"
               :disabled="sending"
-              >Modify</md-button
+              >Modifier</md-button
             >
           </div>
         </md-tab>
-        <md-tab md-label="payment information">
+        <md-tab md-label="Information de paiement">
           <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam
             mollitia dolorum dolores quae commodi impedit possimus qui, atque at

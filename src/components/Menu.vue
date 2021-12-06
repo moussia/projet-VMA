@@ -6,16 +6,16 @@
           <router-link to="/">URGENCE PARENTAL</router-link></md-button
         >
         <md-button md-menu-trigger>
-          <router-link to="/about">About</router-link>
+          <router-link to="/a-propos">À propos</router-link>
         </md-button>
         <md-button md-menu-trigger>
-          <router-link to="/login">Login</router-link>
+          <router-link to="/connexion">Connexion</router-link>
         </md-button>
         <md-button md-menu-trigger>
-          <router-link to="/register">Register</router-link>
+          <router-link to="/inscription">Inscription</router-link>
         </md-button>
         <md-button md-menu-trigger>
-          <router-link to="/my-account">My Account</router-link>
+          <router-link to="/moncompte">Mon compte</router-link>
         </md-button>
       </md-menu>
     </md-toolbar>

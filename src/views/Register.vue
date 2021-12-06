@@ -7,7 +7,7 @@
     >
       <md-card>
         <md-card-header>
-          <div class="md-title">Register</div>
+          <div class="md-title">Inscription</div>
         </md-card-header>
 
         <md-card-content>
@@ -16,7 +16,7 @@
               >Parent</md-radio
             >
             <md-radio v-model="radio" value="professional" class="md-primary"
-              >Professional</md-radio
+              >Professionnel</md-radio
             >
           </div>
         </md-card-content>
@@ -25,7 +25,7 @@
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('firstName')">
-                <label for="first-name">First Name</label>
+                <label for="first-name">Prénom</label>
                 <md-input
                   name="first-name"
                   id="first-name"
@@ -34,17 +34,17 @@
                   :disabled="sending"
                 />
                 <span class="md-error" v-if="!$v.form.firstName.required"
-                  >The first name is required</span
+                  >le prénom est obligatoire</span
                 >
                 <span class="md-error" v-else-if="!$v.form.firstName.minlength"
-                  >Invalid first name</span
+                  >Prénom invalide</span
                 >
               </md-field>
             </div>
 
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('lastName')">
-                <label for="last-name">Last Name</label>
+                <label for="last-name">Nom</label>
                 <md-input
                   name="last-name"
                   id="last-name"
@@ -53,10 +53,10 @@
                   :disabled="sending"
                 />
                 <span class="md-error" v-if="!$v.form.lastName.required"
-                  >The last name is required</span
+                  >le nom est obligatoire</span
                 >
                 <span class="md-error" v-else-if="!$v.form.lastName.minlength"
-                  >Invalid last name</span
+                  >Nom invalide</span
                 >
               </md-field>
             </div>
@@ -65,7 +65,7 @@
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('gender')">
-                <label for="gender">Gender</label>
+                <label for="gender">Sexe</label>
                 <md-select
                   name="gender"
                   id="gender"
@@ -77,7 +77,7 @@
                   <md-option value="M">M</md-option>
                   <md-option value="F">F</md-option>
                 </md-select>
-                <span class="md-error">The gender is required</span>
+                <span class="md-error">le sexe est obligatoire</span>
               </md-field>
             </div>
 
@@ -93,10 +93,10 @@
                   :disabled="sending"
                 />
                 <span class="md-error" v-if="!$v.form.age.required"
-                  >The age is required</span
+                  >l'âge est obligatoire</span
                 >
                 <span class="md-error" v-else-if="!$v.form.age.maxlength"
-                  >Invalid age</span
+                  >L'âge est invalide</span
                 >
               </md-field>
             </div>
@@ -105,7 +105,7 @@
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('phonenumber')">
-                <label for="phonenumber">Phone number</label>
+                <label for="phonenumber">Téléphone</label>
                 <md-input
                   type="number"
                   name="phonenumber"
@@ -115,18 +115,18 @@
                   :disabled="sending"
                 />
                 <span class="md-error" v-if="!$v.form.phonenumber.required"
-                  >The phonenumber is required</span
+                  >le numéro de téléphone est obligatoire</span
                 >
                 <span
                   class="md-error"
                   v-else-if="!$v.form.phonenumber.phonenumber"
-                  >Invalid phonenumber</span
+                  >Téléphone invalide</span
                 >
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('city')">
-                <label for="city">City</label>
+                <label for="city">Ville</label>
                 <md-input
                   type="text"
                   name="city"
@@ -136,10 +136,10 @@
                   :disabled="sending"
                 />
                 <span class="md-error" v-if="!$v.form.city.required"
-                  >The city is required</span
+                  >la ville est obligatoire</span
                 >
                 <span class="md-error" v-else-if="!$v.form.city"
-                  >Invalid city</span
+                  >Ville invalide</span
                 >
               </md-field>
             </div>
@@ -148,7 +148,7 @@
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('adress')">
-                <label for="adress">Adress</label>
+                <label for="adress">Adresse</label>
                 <md-input
                   type="text"
                   name="adress"
@@ -158,10 +158,10 @@
                   :disabled="sending"
                 />
                 <span class="md-error" v-if="!$v.form.adress.required"
-                  >The adress is required</span
+                  >l'adresse est obligatoire</span
                 >
                 <span class="md-error" v-else-if="!$v.form.adress"
-                  >Invalid adress</span
+                  >Adresse invalide</span
                 >
               </md-field>
             </div>
@@ -170,7 +170,7 @@
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('zipcode')">
-                <label for="zipcode">Zip code</label>
+                <label for="zipcode">Code postal</label>
                 <md-input
                   type="number"
                   name="zipcode"
@@ -180,16 +180,16 @@
                   :disabled="sending"
                 />
                 <span class="md-error" v-if="!$v.form.zipcode.required"
-                  >The zipcode is required</span
+                  >le code postal est obligatoire</span
                 >
                 <span class="md-error" v-else-if="!$v.form.zipcode"
-                  >Invalid zipcode</span
+                  >Code postal invalide</span
                 >
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100">
               <md-field>
-                <label>Only images</label>
+                <label>Seulement les images</label>
                 <md-file v-model="single" accept="image/*" />
               </md-field>
             </div>
@@ -208,16 +208,16 @@
                   :disabled="sending"
                 />
                 <span class="md-error" v-if="!$v.form.email.required"
-                  >The email is required</span
+                  >l'email est obligatoire</span
                 >
                 <span class="md-error" v-else-if="!$v.form.email.email"
-                  >Invalid email</span
+                  >Email invalide</span
                 >
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('password')">
-                <label for="email">Password</label>
+                <label for="email">Mot de passe</label>
                 <md-input
                   type="password"
                   name="password"
@@ -227,10 +227,10 @@
                   :disabled="sending"
                 />
                 <span class="md-error" v-if="!$v.form.password.required"
-                  >The password is required</span
+                  >le mot de passe est obligatoire</span
                 >
                 <span class="md-error" v-else-if="!$v.form.password.password"
-                  >Invalid password</span
+                  >Mot de passe invalide</span
                 >
               </md-field>
             </div>
@@ -242,15 +242,15 @@
             type="submit"
             class="md-raised md-primary"
             :disabled="sending"
-            >Subscribe</md-button
+            >Enregistrer</md-button
           >
         </md-card-actions>
 
-        <router-link to="/login">Login</router-link>
+        <router-link to="/connexion">Connexion</router-link>
       </md-card>
 
       <md-snackbar :md-active.sync="userSaved"
-        >The user {{ lastUser }} was saved with success!</md-snackbar
+        >l'utilisateur {{ lastUser }} à été enregistré avec succès!</md-snackbar
       >
     </form>
   </div>
