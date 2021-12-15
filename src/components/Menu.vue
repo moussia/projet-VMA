@@ -6,16 +6,16 @@
           <router-link to="/">URGENCE PARENTAL</router-link></md-button
         >
         <md-button md-menu-trigger>
-          <router-link to="/a-propos">À propos</router-link>
+          <router-link to="/about">About</router-link>
         </md-button>
         <md-button md-menu-trigger>
-          <router-link to="/connexion">Connexion</router-link>
+          <router-link to="/login">Login</router-link>
         </md-button>
         <md-button md-menu-trigger>
-          <router-link to="/inscription">Inscription</router-link>
+          <router-link to="/register">Register</router-link>
         </md-button>
         <md-button md-menu-trigger>
-          <router-link to="/moncompte">Mon compte</router-link>
+          <router-link to="/my-account">My Account</router-link>
         </md-button>
       </md-menu>
     </md-toolbar>
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'Menu',
+  name: "Menu",
 };
 </script>
 

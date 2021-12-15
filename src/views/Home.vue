@@ -41,18 +41,37 @@
         que vous attendez l’arrivée du médecin urgentiste. Pour toute demande,
         contactez-nous
       </p>
+
+      <h2>Exempl de call API</h2>
+      <div id="app" style="color: white">
+        {{ info }}
+      </div>
     </md-content>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import ModalSubscribeChild from '@/components/ModalSubscribeChild.vue';
+import ModalSubscribeChild from "@/components/ModalSubscribeChild.vue";
+
+// Pour récupérer le back
+import axios from "axios";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     ModalSubscribeChild,
+  },
+  el: "#app",
+  data() {
+    return {
+      info: null,
+    };
+  },
+  mounted() {
+    axios
+      .get("https://127.0.0.1:8000/api/posts?page=1")
+      .then((response) => (this.info = response.data));
   },
 };
 </script>
