@@ -1,11 +1,11 @@
 # Back
 
-## Etape 1 : Créer la BD
+## Etape 1 : Pensez à lancer le serveur (ex : pour windows wampserver)
+
+## Etape 2 : Créer la BD (si c'est pas déjà fait)
 ```
 php bin/console doctrine:database:create
 ```
-
-## Etape 2 : Pensez à lancer le serveur (ex : pour windows wampserver)
 
 ## Etape 3 : Mettre à jour la BD
 
@@ -38,7 +38,7 @@ yarn serve
 Penser à mettre à jour son user et password dans le fichier de conf côté back (.nev)
 à ce niveau là : DATABASE_URL="mysql://root:@127.0.0.1:3306/test-api?serverVersion=5.7"
 
-Si besoin se référer au README du back ou front 
+Si besoin se référer au README du back ou du front 
 
 
 

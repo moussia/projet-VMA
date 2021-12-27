@@ -15,27 +15,27 @@ const routes = [
     component: Home
   },
   {
-    path: '/inscription',
+    path: '/register',
     name: 'Register',
     component: Register
   },
   {
-    path: '/connexion',
+    path: '/login',
     name: 'Login',
     component: Login
   },
   {
-    path: '/moncompte',
+    path: '/my-account',
     name: 'MyAccount',
     component: MyAccount
   },
   {
-    path: '/motdepasseoublie',
+    path: '/forgetPassword',
     name: 'ForgetPassword',
     component: ForgetPassword
   },
   {
-    path: '/a-propos',
+    path: '/about',
     name: 'About',
     component: () => import('../views/About.vue')
   },
