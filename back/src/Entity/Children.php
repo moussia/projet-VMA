@@ -3,18 +3,13 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ChildrenRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ChildrenRepository::class)
  * 
- * @ApiResource(
- *  collectionOperations={"get"={"normalization_context"={"groups"="children:list"}}},
- *  itemOperations={"get"={"normalization_context"={"groups"="children:item"}}},
- *  paginationEnabled=false
- * )
+ * @ApiResource()
  */
 class Children
 {

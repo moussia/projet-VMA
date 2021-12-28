@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ParentsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -12,12 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ParentsRepository::class)
  * 
- * @ApiResource(
- *  collectionOperations={"get"={"normalization_context"={"groups"="parents:list"}}},
- *  itemOperations={"get"={"normalization_context"={"groups"="parents:item"}}},
- *  order={"firstname"="DESC", "city"="ASC"},
- *  paginationEnabled=false
- * )
+ * @ApiResource()
  */
 class Parents
 {
@@ -71,7 +65,7 @@ class Parents
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $postal_code;
+    private $postalCode;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -84,20 +78,9 @@ class Parents
     private $country;
 
     /**
-     * @ORM\OneToMany(targetEntity=Children::class, mappedBy="id_parent")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $childrens;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Basket::class, mappedBy="id_parent")
-     */
-    private $baskets;
-
-    public function __construct()
-    {
-        $this->childrens = new ArrayCollection();
-        $this->baskets = new ArrayCollection();
-    }
+    private $gender;
 
     public function getId(): ?int
     {
@@ -236,62 +219,14 @@ class Parents
         return $this;
     }
 
-    /**
-     * @return Collection|Children[]
-     */
-    public function getChildrens(): Collection
+    public function getGender(): ?string
     {
-        return $this->childrens;
+        return $this->gender;
     }
 
-    public function addChildren(Children $children): self
+    public function setGender(?string $gender): self
     {
-        if (!$this->childrens->contains($children)) {
-            $this->childrens[] = $children;
-            $children->setIdParent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeChildren(Children $children): self
-    {
-        if ($this->childrens->removeElement($children)) {
-            // set the owning side to null (unless already changed)
-            if ($children->getIdParent() === $this) {
-                $children->setIdParent(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Basket[]
-     */
-    public function getBaskets(): Collection
-    {
-        return $this->baskets;
-    }
-
-    public function addBasket(Basket $basket): self
-    {
-        if (!$this->baskets->contains($basket)) {
-            $this->baskets[] = $basket;
-            $basket->setIdParent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBasket(Basket $basket): self
-    {
-        if ($this->baskets->removeElement($basket)) {
-            // set the owning side to null (unless already changed)
-            if ($basket->getIdParent() === $this) {
-                $basket->setIdParent(null);
-            }
-        }
+        $this->gender = $gender;
 
         return $this;
     }

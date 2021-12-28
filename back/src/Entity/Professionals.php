@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ProfessionalsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -12,11 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ProfessionalsRepository::class)
  * 
- * @ApiResource(
- *  collectionOperations={"get"={"normalization_context"={"groups"="professionals:list"}}},
- *  itemOperations={"get"={"normalization_context"={"groups"="professionals:item"}}},
- *  paginationEnabled=false
- * )
+ * @ApiResource()
  */
 class Professionals
 {
@@ -97,15 +92,6 @@ class Professionals
      */
     private $password;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Services::class, mappedBy="id_pro")
-     */
-    private $name;
-
-    public function __construct()
-    {
-        $this->name = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -276,36 +262,6 @@ class Professionals
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Services[]
-     */
-    public function getService(): Collection
-    {
-        return $this->service;
-    }
-
-    public function addService(Services $service): self
-    {
-        if (!$this->service->contains($service)) {
-            $this->service[] = $service;
-            $service->setIdPro($this);
-        }
-
-        return $this;
-    }
-
-    public function removeService(Services $service): self
-    {
-        if ($this->service->removeElement($service)) {
-            // set the owning side to null (unless already changed)
-            if ($service->getIdPro() === $this) {
-                $service->setIdPro(null);
-            }
-        }
 
         return $this;
     }

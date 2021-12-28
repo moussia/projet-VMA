@@ -63,11 +63,11 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate';
-import { required, email } from 'vuelidate/lib/validators';
+import { validationMixin } from "vuelidate";
+import { required, email } from "vuelidate/lib/validators";
 
 export default {
-  name: 'Login',
+  name: "Login",
   mixins: [validationMixin],
   data: () => ({
     form: {
@@ -94,7 +94,7 @@ export default {
       const field = this.$v.form[fieldName];
       if (field) {
         return {
-          'md-invalid': field.$invalid && field.$dirty,
+          "md-invalid": field.$invalid && field.$dirty,
         };
       }
     },
@@ -120,5 +120,6 @@ export default {
 <style lang="scss" scoped>
 .toto {
   display: inline-block;
+  padding: 5%;
 }
 </style>

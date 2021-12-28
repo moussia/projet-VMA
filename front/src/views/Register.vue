@@ -74,8 +74,8 @@
                   :disabled="sending"
                 >
                   <md-option></md-option>
-                  <md-option value="M">M</md-option>
-                  <md-option value="F">F</md-option>
+                  <md-option value="HOMME">HOMME</md-option>
+                  <md-option value="FEMME">FEMME</md-option>
                 </md-select>
                 <span class="md-error">le sexe est obligatoire</span>
               </md-field>
@@ -85,13 +85,18 @@
               <md-field :class="getValidationClass('age')">
                 <label for="age">Age</label>
                 <md-input
-                  type="number"
+                  type="date"
                   id="age"
                   name="age"
                   autocomplete="age"
                   v-model="form.age"
                   :disabled="sending"
                 />
+                <!-- <Datepicker
+                  v-model="customDate"
+                  format="dd-MM-yyyy"
+                ></Datepicker> -->
+
                 <span class="md-error" v-if="!$v.form.age.required"
                   >l'âge est obligatoire</span
                 >
@@ -257,25 +262,31 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate';
+import { validationMixin } from "vuelidate";
 import {
   required,
   email,
   minLength,
   maxLength,
-} from 'vuelidate/lib/validators';
+} from "vuelidate/lib/validators";
+
+import { mapActions } from "vuex";
+import axios from "axios";
+// import Datepicker from "vuejs-datepicker";
 
 export default {
-  name: 'Register',
+  name: "Register",
   mixins: [validationMixin],
-
+  // components: {
+  //   Datepicker,
+  // },
   data: () => ({
     form: {
       firstName: null,
       lastName: null,
       phonenuber: null,
       gender: null,
-      age: null,
+      age: new Date(),
       email: null,
       city: null,
       adress: null,
@@ -285,27 +296,31 @@ export default {
     userSaved: false,
     sending: false,
     lastUser: null,
-    radio: 'accent',
+    radio: "accent",
   }),
   validations: {
     form: {
       firstName: {
         required,
         minLength: minLength(3),
+        maxLength: maxLength(25),
       },
       lastName: {
         required,
         minLength: minLength(3),
+        maxLength: maxLength(25),
       },
       age: {
         required,
-        maxLength: maxLength(3),
+        // maxLength: maxLength(3),
       },
       city: {
         required,
+        minLength: minLength(2),
       },
       adress: {
         required,
+        minLength: minLength(5),
       },
       gender: {
         required,
@@ -315,6 +330,8 @@ export default {
       },
       phonenumber: {
         required,
+        minLength: minLength(4),
+        maxLength: maxLength(15),
       },
       email: {
         required,
@@ -331,7 +348,7 @@ export default {
 
       if (field) {
         return {
-          'md-invalid': field.$invalid && field.$dirty,
+          "md-invalid": field.$invalid && field.$dirty,
         };
       }
     },
@@ -362,8 +379,29 @@ export default {
     validateUser() {
       this.$v.$touch();
 
+      axios.post("https://127.0.0.1:8000/api/parents", this.form);
+      // .then((response) => {
+      //   response.data;
+      //   console.log(reponse);
+      // })
+      // .catch((error) => {
+      //   this.errorMessage = error.message;
+      //   console.error("There was an error!", error);
+      // });
+
       if (!this.$v.$invalid) {
         this.saveUser();
+      }
+    },
+    ...mapActions(["Register"]),
+    async submit() {
+      try {
+        await this.Register(this.form);
+        console.log("data : " + this.form);
+        this.$router.push("/posts");
+        this.showError = false;
+      } catch (error) {
+        this.showError = true;
       }
     },
   },
