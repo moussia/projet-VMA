@@ -2,32 +2,21 @@
   <div id="nav">
     <md-toolbar class="md-transparent">
       <md-menu md-size="medium" md-align-trigger>
-        <span v-if="isLoggedIn">
-          <md-button md-menu-trigger>
-            <router-link to="/home">URGENCE PARENTAL</router-link>
-          </md-button>
-          <md-button md-menu-trigger @click="logout">
-            <router-link to="/logOut">Logout</router-link>
-          </md-button>
-          <md-button md-menu-trigger>
-            <router-link to="/my-account">My Account</router-link>
-          </md-button>
-          <!-- <a @click="logout">Logout</a> -->
-        </span>
-        <span v-else>
-          <md-button md-menu-trigger>
-            <router-link to="/home">URGENCE PARENTAL</router-link>
-          </md-button>
-          <md-button md-menu-trigger>
-            <router-link to="/login">Login</router-link>
-          </md-button>
-          <md-button md-menu-trigger>
-            <router-link to="/register">Register</router-link>
-          </md-button>
-          <md-button md-menu-trigger>
-            <router-link to="/about">About</router-link>
-          </md-button>
-        </span>
+        <md-button md-menu-trigger>
+          <router-link to="/">URGENCE PARENTAL</router-link></md-button
+        >
+        <md-button md-menu-trigger>
+          <router-link to="/a-propos">À propos</router-link>
+        </md-button>
+        <md-button md-menu-trigger>
+          <router-link to="/connexion">Connexion</router-link>
+        </md-button>
+        <md-button md-menu-trigger>
+          <router-link to="/inscription">Inscription</router-link>
+        </md-button>
+        <md-button md-menu-trigger>
+          <router-link to="/moncompte">Mon compte</router-link>
+        </md-button>
       </md-menu>
     </md-toolbar>
     <router-view />
