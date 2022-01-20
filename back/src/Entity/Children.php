@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Repository\ChildrenRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,12 +50,12 @@ class Children
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $photo;
+    private $observation;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity=Parents::class, inversedBy="id_children")
      */
-    private $observation;
+    private $parents;
 
     public function getId(): ?int
     {
@@ -141,6 +142,18 @@ class Children
     public function setObservation(?string $observation): self
     {
         $this->observation = $observation;
+
+        return $this;
+    }
+
+    public function getParents(): ?Parents
+    {
+        return $this->parents;
+    }
+
+    public function setParents(?Parents $parents): self
+    {
+        $this->parents = $parents;
 
         return $this;
     }
