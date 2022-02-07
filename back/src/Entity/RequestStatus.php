@@ -20,10 +20,10 @@ class RequestStatus
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Request::class)
+     * @ORM\ManyToOne(targetEntity=Requests::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $id_request;
+    private $id_requests;
 
     /**
      * @ORM\ManyToOne(targetEntity=Professionals::class)
@@ -50,14 +50,14 @@ class RequestStatus
         return $this->id;
     }
 
-    public function getIdRequest(): ?Request
+    public function getIdRequests(): ?Requests
     {
-        return $this->id_request;
+        return $this->id_requests;
     }
 
-    public function setIdRequest(?Request $id_request): self
+    public function setIdRequests(?Requests $id_requests): self
     {
-        $this->id_request = $id_request;
+        $this->id_requests = $id_requests;
 
         return $this;
     }
