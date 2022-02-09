@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use App\Entity\Requests;
 
 class RequestController extends AbstractController {
@@ -18,7 +19,8 @@ class RequestController extends AbstractController {
      */
     public function createAction(Request $request) {
 
-        $req = new Request();
+        $req = new Requests();
+        $rep.setid
 
         $form = $this->createFormBuilder($req)
             ->add('hours', IntegerType::class)
@@ -34,11 +36,11 @@ class RequestController extends AbstractController {
             $em = $this->getDoctrine()->getManager();
             $em->persist($articles);
             $em->flush();
-
+            //appel d'une fonction qui va permettre de trouver un pro dans la meme ville
             echo 'Envoyé';
         }
 
-        return $this->render('articles/new.html.twig', [
+        return $this->render('requests/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }

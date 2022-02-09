@@ -1,0 +1,11 @@
+{
+    "symfony/form": {
+        "version": "v5.4.3"
+    },
+    "symfony/options-resolver": {
+        "version": "v5.4.3"
+    },
+    "symfony/polyfill-intl-icu": {
+        "version": "v1.24.0"
+    }
+}

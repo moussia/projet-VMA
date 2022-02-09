@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="p-5 mx-auto mb-5 rounded shadow card form-register">
+        {{ form_start(form) }}
+            <h3 class="mb-4">Demande d'urgence</h3>
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}
