@@ -5,7 +5,8 @@
     <span v-if="users.error" class="text-danger">ERROR: {{ users.error }}</span>
     <ul v-if="users.items">
       <li v-for="user in users.items" :key="user.id">
-        {{ user.firstName + " " + user.lastName }}
+        {{ user.firstname + " " + user.lastname }}
+        {{ user }}
         <span v-if="user.deleting"><em> - Deleting...</em></span>
         <span v-else-if="user.deleteError" class="text-danger">
           - ERROR: {{ user.deleteError }}</span
