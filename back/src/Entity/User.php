@@ -3,11 +3,15 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"user:read"}},
+ *     denormalizationContext={"groups"={"user:write"}}
+ * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User
@@ -16,28 +20,96 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * 
+     * @Groups("user:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Groups({"user:read", "user:write"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Groups({"user:read", "user:write"})
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Groups({"user:read", "user:write"})
      */
     private $email;
 
+     /**
+     * @Groups("user:write")
+     *
+     * @SerializedName("password")
+     */
+    private $plainPassword;
+    
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Groups("user:read")
      */
-    private $password;
+    private $role;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * 
+     * @Groups({"user:read", "user:write"})
+     */
+    private $photo;
+
+    /**
+     * @ORM\Column(type="date")
+     * 
+     * @Groups({"user:read", "user:write"})
+     */
+    private $birthdate;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * 
+     * @Groups({"user:read", "user:write"})
+     */
+    private $phone;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * 
+     * @Groups({"user:read", "user:write"})
+     */
+    private $address;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * 
+     * @Groups({"user:read", "user:write"})
+     */
+    private $city;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * 
+     * @Groups({"user:read", "user:write"})
+     */
+    private $zipcode;
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        $this->plainPassword = null;
+    }
 
     public function getId(): ?int
     {
@@ -88,6 +160,90 @@ class User
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getBirthdate(): ?\DateTimeInterface
+    {
+        return $this->birthdate;
+    }
+
+    public function setBirthdate(\DateTimeInterface $birthdate): self
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getZipcode(): ?string
+    {
+        return $this->zipcode;
+    }
+
+    public function setZipcode(string $zipcode): self
+    {
+        $this->zipcode = $zipcode;
 
         return $this;
     }

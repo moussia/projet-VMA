@@ -2,6 +2,7 @@
   <div class="home">
     <ModalSubscribeChild />
     <h1>URGENCE PARENTALE :</h1>
+    <div id="app">{{ parent }}</div>
     <p class="">
       Visites aide parentales à domicile <br />
       consultations <br />
@@ -10,7 +11,7 @@
       (Paris 75, 92, 93, 94)
     </p>
     <div class="textintro">
-      <md-button class="md-raised md-primary"
+      <md-button class="md-raised md-primary" v-on:click="demandeVisite"
         >Demander une visite a domicile</md-button
       >
       <md-button class="md-raised md-primary"
@@ -48,12 +49,34 @@
 <script>
 // @ is an alias to /src
 import ModalSubscribeChild from "@/components/ModalSubscribeChild.vue";
+import axios from 'axios';
 
 export default {
   name: "Home",
   components: {
     ModalSubscribeChild,
   },
+  el: "#app",
+  data(){
+    return {parent: null}
+  },
+  mounted () {
+    axios
+      .get('https://127.0.0.1:8000/api/posts/1', {
+        headers: {
+          'Content-Type': null
+        }
+      })
+      .then(
+        response => (this.parent = response),
+        console.log("parent = "+JSON.stringify(this.parent))
+      )
+  },
+  methods: {
+    demandeVisite: function(event) {
+      alert(event)
+    }
+  }
 };
 </script>
 
