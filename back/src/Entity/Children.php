@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -39,7 +40,6 @@ class Children
      * @ORM\ManyToOne(targetEntity=Parents::class, inversedBy="childrens")
      * @ORM\JoinColumn(nullable=false)
      * 
-     * @Assert\NotNull
      * @Groups("children_read", "user_read")
      */
     private $id_parent;
@@ -48,7 +48,7 @@ class Children
      * @ORM\Column(type="string", length=255)
      * 
      * @Assert\NotNull
-     * @Groups("children_read", "parent_read", "children_write")
+     * @Groups("children_read", "children_write")
      */
     private $lastname;
 
@@ -80,7 +80,7 @@ class Children
      * @Groups("children_read", "parent_read", "children_write")
      * @Assert\Length(
      *     min = 1,
-     *     max = 400
+     *     max = 800
      * )
 
      */

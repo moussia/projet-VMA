@@ -3,7 +3,7 @@
     <h2>Register</h2>
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
-        <label for="firstName">First Name</label>
+        <label for="firstName">Firstname</label>
         <input
           type="text"
           v-model="user.firstName"
@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="lastName">Last Name</label>
+        <label for="lastName">Lastname</label>
         <input
           type="text"
           v-model="user.lastName"
@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="email">email</label>
+        <label for="email">Email</label>
         <input
           type="text"
           v-model="user.email"
@@ -55,7 +55,7 @@
         <input
           type="password"
           v-model="user.password"
-          v-validate="{ required: true, min: 6 }"
+          v-validate="{ required: true, min: 3, max: 20 }"
           name="password"
           class="form-control"
           :class="{ 'is-invalid': submitted && errors.has('password') }"
@@ -65,6 +65,79 @@
           class="invalid-feedback"
         >
           {{ errors.first("password") }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="birthdate">Birthdate</label>
+        <input
+          type="date"
+          v-model="user.birthdate"
+          v-validate="'required'"
+          name="birthdate"
+          class="form-control"
+          :class="{ 'is-invalid': submitted && errors.has('birthdate') }"
+        />
+        <div
+          v-if="submitted && errors.has('birthdate')"
+          class="invalid-feedback"
+        >
+          {{ errors.first("birthdate") }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          type="number"
+          v-model="user.phone"
+          v-validate="'required'"
+          name="phone"
+          class="form-control"
+          :class="{ 'is-invalid': submitted && errors.has('phone') }"
+        />
+        <div v-if="submitted && errors.has('phone')" class="invalid-feedback">
+          {{ errors.first("phone") }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input
+          type="text"
+          v-model="user.address"
+          v-validate="'required'"
+          name="address"
+          class="form-control"
+          :class="{ 'is-invalid': submitted && errors.has('address') }"
+        />
+        <div v-if="submitted && errors.has('address')" class="invalid-feedback">
+          {{ errors.first("address") }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input
+          type="text"
+          v-model="user.city"
+          v-validate="'required'"
+          name="city"
+          class="form-control"
+          :class="{ 'is-invalid': submitted && errors.has('city') }"
+        />
+        <div v-if="submitted && errors.has('city')" class="invalid-feedback">
+          {{ errors.first("city") }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="zipcode">Zipcode</label>
+        <input
+          type="text"
+          v-model="user.zipcode"
+          v-validate="'required'"
+          name="zipcode"
+          class="form-control"
+          :class="{ 'is-invalid': submitted && errors.has('zipcode') }"
+        />
+        <div v-if="submitted && errors.has('zipcode')" class="invalid-feedback">
+          {{ errors.first("zipcode") }}
         </div>
       </div>
       <div class="form-group">
@@ -92,7 +165,12 @@ export default {
         lastName: "",
         email: "",
         password: "",
-        // à compléter avec l'Entité côté back
+        birthdate: "",
+        phone: "",
+        address: "",
+        city: "",
+        zipcode: "",
+        roles: ["ROLE_USER"],
       },
       submitted: false,
     };

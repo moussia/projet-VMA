@@ -74,10 +74,9 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      * 
      * @Groups("user_write")
-     * @Assert\NotNull
      * @Assert\Length(
      *     min = 3,
-     *     max = 20
+     *     max = 20)
      */
     private $password;
 
