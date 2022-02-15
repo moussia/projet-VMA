@@ -9,7 +9,20 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ChildrenRepository::class)
  * 
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"children_read"}},
+ *     denormalizationContext={"groups"={"children_write"}},
+ *     attributes={"security"="is_granted('ROLE_USER', 'ROLE_PARENT')"},
+ *     collectionOperations={
+ *         "post"={"security"="is_granted('ROLE_PARENT')"},
+ *         "get"={"security"="is_granted('ROLE_PARENT')"},
+ *     },
+ *     itemOperations={
+ *         "put"={"security_post_denormalize"="is_granted('PARENT_EDIT', user)"}, 
+ *         "patch"={"security_post_denormalize"="is_granted('PARENT_EDIT', user)"},
+ *         "delete"={"security_post_denormalize"="is_granted('ROLE_ADMIN', user)"},
+ *     }
+ * )
  */
 class Children
 {
@@ -17,42 +30,59 @@ class Children
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * 
+     * @Groups("children_read", "user_read")
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=Parents::class, inversedBy="childrens")
      * @ORM\JoinColumn(nullable=false)
+     * 
+     * @Assert\NotNull
+     * @Groups("children_read", "user_read")
      */
     private $id_parent;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotNull
+     * @Groups("children_read", "parent_read", "children_write")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotNull
+     * @Groups("children_read", "parent_read", "children_write")
      */
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * 
+     * @Groups("children_read", "parent_read", "children_write")
      */
     private $gender;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
+     * 
+     * @Groups("children_read", "parent_read")
      */
     private $birthdate;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $photo;
+     * 
+     * @Groups("children_read", "parent_read", "children_write")
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 400
+     * )
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $observation;
 
@@ -117,18 +147,6 @@ class Children
     public function setBirthdate(\DateTimeInterface $birthdate): self
     {
         $this->birthdate = $birthdate;
-
-        return $this;
-    }
-
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): self
-    {
-        $this->photo = $photo;
 
         return $this;
     }

@@ -6,12 +6,22 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Repository\ParentsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=ParentsRepository::class)
  * 
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"parents_read"}},
+ *     attributes={"security"="is_granted('ROLE_USER')"},
+ *     itemOperations={
+ *         "patch"={"security_post_denormalize"="is_granted('PARENT_EDIT', user)"},
+ *         "delete"={"security_post_denormalize"="is_granted('ROLE_ADMIN', user)"},
+ *     }
+ * )
  */
 class Parents
 {
@@ -19,214 +29,93 @@ class Parents
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * 
+     * @Groups("parents_read")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToMany(targetEntity=Children::class, mappedBy="parents")
+     * 
+     * @Groups("parents_read")
      */
-    private $lastname;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $firstname;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $birthdate;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
+    private $id_children;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * 
+     * @Groups("parents_read")
      */
-    private $photo;
+    private $role;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     * 
+     * @Groups("parents_read")
      */
-    private $phoneNumber;
+    private $id_user;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $adress;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $postalCode;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $city;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $country;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $gender;
+    public function __construct()
+    {
+        $this->id_children = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getLastname(): ?string
+    /**
+     * @return Collection|Children[]
+     */
+    public function getIdChildren(): Collection
     {
-        return $this->lastname;
+        return $this->id_children;
     }
 
-    public function setLastname(string $lastname): self
+    public function addIdChild(Children $idChild): self
     {
-        $this->lastname = $lastname;
+        if (!$this->id_children->contains($idChild)) {
+            $this->id_children[] = $idChild;
+            $idChild->setIdParent($this);
+        }
 
         return $this;
     }
 
-    public function getFirstname(): ?string
+    public function removeIdChild(Children $idChild): self
     {
-        return $this->firstname;
-    }
-
-    public function setFirstname(string $firstname): self
-    {
-        $this->firstname = $firstname;
+        if ($this->id_children->removeElement($idChild)) {
+            // set the owning side to null (unless already changed)
+            if ($idChild->getIdParent() === $this) {
+                $idChild->setIdParent(null);
+            }
+        }
 
         return $this;
     }
 
-    public function getBirthdate(): ?\DateTimeInterface
+    public function getRole(): ?string
     {
-        return $this->birthdate;
+        return $this->role;
     }
 
-    public function setBirthdate(\DateTimeInterface $birthdate): self
+    public function setRole(string $role): self
     {
-        $this->birthdate = $birthdate;
+        $this->role = $role;
 
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getIdUser(): ?User
     {
-        return $this->email;
+        return $this->id_user;
     }
 
-    public function setEmail(string $email): self
+    public function setIdUser(User $id_user): self
     {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): self
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    public function getPhoneNumber(): ?string
-    {
-        return $this->phoneNumber;
-    }
-
-    public function setPhoneNumber(?string $phoneNumber): self
-    {
-        $this->phoneNumber = $phoneNumber;
-
-        return $this;
-    }
-
-    public function getAdress(): ?string
-    {
-        return $this->adress;
-    }
-
-    public function setAdress(string $adress): self
-    {
-        $this->adress = $adress;
-
-        return $this;
-    }
-
-    public function getPostalCode(): ?string
-    {
-        return $this->postalCode;
-    }
-
-    public function setPostalCode(string $postalCode): self
-    {
-        $this->postalCode = $postalCode;
-
-        return $this;
-    }
-
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
-
-    public function setCity(string $city): self
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    public function setCountry(string $country): self
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    public function getGender(): ?string
-    {
-        return $this->gender;
-    }
-
-    public function setGender(?string $gender): self
-    {
-        $this->gender = $gender;
+        $this->id_user = $id_user;
 
         return $this;
     }
