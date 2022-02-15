@@ -1,12 +1,13 @@
 <template>
   <div>
     <h1>Bienvenue {{ account.user.firstName }}!</h1>
+    <p>{{ account.user.username }}</p>
     <em v-if="users.loading">Loading users...</em>
     <span v-if="users.error" class="text-danger">ERROR: {{ users.error }}</span>
-    <ul v-if="users.items">
+    <!-- <ul v-if="users.items">
       <li v-for="user in users.items" :key="user.id">
         {{ user.firstname + " " + user.lastname }}
-        {{ user }}
+        {{ user.username }}
         <span v-if="user.deleting"><em> - Deleting...</em></span>
         <span v-else-if="user.deleteError" class="text-danger">
           - ERROR: {{ user.deleteError }}</span
@@ -15,7 +16,7 @@
           - <a @click="deleteUser(user.id)" class="text-danger">Delete</a></span
         >
       </li>
-    </ul>
+    </ul> -->
     <p>
       <router-link to="/login">Logout</router-link>
     </p>

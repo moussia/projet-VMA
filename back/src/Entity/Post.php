@@ -8,7 +8,14 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={
+ *          "GET"={
+ *              "normalization_context"={"groups"={"post_cget"}},
+ *          },
+ *          "post"={"security"="is_granted('ROLE_USER')"}
+ *     }
+ * )
  */
 class Post
 {
