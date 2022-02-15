@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Bienvenue {{ account.user.firstName }}!</h1>
-    <p>{{ account.user.username }}</p>
+    <p>{{ account.user.email }}</p>
     <em v-if="users.loading">Loading users...</em>
     <span v-if="users.error" class="text-danger">ERROR: {{ users.error }}</span>
     <!-- <ul v-if="users.items">
