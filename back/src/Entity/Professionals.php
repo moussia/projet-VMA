@@ -11,7 +11,13 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ProfessionalsRepository::class)
  * 
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_USER', 'ROLE_PRO')"},
+ *     itemOperations={
+ *         "patch"={"security_post_denormalize"="is_granted('PRO_EDIT', user)"},
+ *         "delete"={"security_post_denormalize"="is_granted('ROLE_ADMIN', user)"},
+ *     }
+ * )
  */
 class Professionals
 {
