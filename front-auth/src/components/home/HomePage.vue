@@ -2,8 +2,8 @@
   <div>
     <h1>Bienvenue {{ account.user.firstName }}!</h1>
     <p>{{ account.user.email }}</p>
-    <em v-if="users.loading">Loading users...</em>
-    <span v-if="users.error" class="text-danger">ERROR: {{ users.error }}</span>
+    <!-- <em v-if="users.loading">Loading users...</em>
+    <span v-if="users.error" class="text-danger">ERROR: {{ users.error }}</span> -->
     <!-- <ul v-if="users.items">
       <li v-for="user in users.items" :key="user.id">
         {{ user.firstname + " " + user.lastname }}
