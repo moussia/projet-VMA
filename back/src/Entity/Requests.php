@@ -7,8 +7,13 @@ use App\Repository\RequestRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass=RequestsRepository::class)
+ * @ApiResource(
+ *      attributes={"security"="is_granted('ROLE_USER', 'ROLE_PARENT')"},
+ *      itemOperations={
+ *          "patch"={"security_post_denormalize"="is_granted('ROLE_USER', user)"},
+ *          "delete"={"security_post_denormalize"="is_granted('ROLE_ADMIN', user)"},
+ *     })
  */
 class Requests
 {

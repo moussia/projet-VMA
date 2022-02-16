@@ -7,8 +7,13 @@ use App\Repository\RequestStatusRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass=RequestStatusRepository::class)
+ * @ApiResource(
+ *      attributes={"security"="is_granted('ROLE_USER')"},
+ *      itemOperations={
+ *          "patch"={"security_post_denormalize"="is_granted('ROLE_USER', user)"},
+ *          "delete"={"security_post_denormalize"="is_granted('ROLE_ADMIN', user)"},
+ *     }))
  */
 class RequestStatus
 {
