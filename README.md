@@ -1,5 +1,9 @@
 # Back
 
+## API Plateform
+## Vue JS
+## Microservice (back + back-payment)
+
 ## Etape 1 : Pensez à lancer le serveur (ex : pour windows wampserver)
 
 ## Etape 2 : Créer la BD (si c'est pas déjà fait)
@@ -23,22 +27,19 @@ php bin/console make:migration
 php bin/console doctrine:migrations:migrate
 ```
 
+# Generate the public and private keys used for signing JWT tokens
+```
+php bin/console lexik:jwt:generate-keypair
+```
 ## Etaoe 4 : Lancer le back 
 ```
 symfony serve
 ```
 
-## Etape 5 : Lancer le front 
+## Etape 5 : Lancer le front (front-auth)
 ```
 yarn serve
 ```
-
-
-### Mémo
-Penser à mettre à jour son user et password dans le fichier de conf côté back (.nev)
-à ce niveau là : DATABASE_URL="mysql://root:@127.0.0.1:3306/test-api?serverVersion=5.7"
-
-Si besoin se référer au README du back ou du front 
 
 
 
