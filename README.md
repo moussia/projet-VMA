@@ -1,4 +1,4 @@
-# Back
+# PROJET URGENCE PARENTALE
 
 ## API Plateform
 ## Vue JS
@@ -31,7 +31,7 @@ php bin/console doctrine:migrations:migrate
 ```
 php bin/console lexik:jwt:generate-keypair
 ```
-## Etaoe 4 : Lancer le back 
+## Etape 4 : Lancer le back 
 ```
 symfony serve
 ```
